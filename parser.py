@@ -162,3 +162,5 @@ def _main() -> None:
 
 if __name__ == "__main__":
     _main()
+def get_ml_text(parsed: ParsedError) -> str:
+    return parsed.cleaned

@@ -25,5 +25,8 @@ except Exception as e:
     print(f"🛠️ Fix        : {best['fix']}")
     print(f"📊 Confidence : {best['confidence']}%")
     print(f"💡 Why        : {best['why']}")
-
+    if result["alternatives"]:
+        print("\n🔁 Other Possible Causes:")
+        for alt in result["alternatives"]:
+            print(f" - {alt['type']} ({alt['confidence']}%)")
     print("\n━━━━━━━━━━━━━━━━━━━━━━━━━━\n")

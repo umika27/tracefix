@@ -1,7 +1,9 @@
 import re
-
+from parser import parse_error
+from ml_model import ml_predict
 def analyze_error(error_msg):
-    error = error_msg.lower()
+    parsed = parse_error(error_msg)
+    error = parsed.cleaned
 
     candidates = []
     def add_candidate(type_, cause, fix, score, why):
@@ -93,6 +95,15 @@ def analyze_error(error_msg):
             85,
             "Detected 'IndexError'"
         )
+    # 🔹 ML prediction
+    ml_label, ml_conf = ml_predict(parsed.cleaned)
+    add_candidate(
+        ml_label,
+        "Predicted using machine learning",
+        "Suggested fix based on learned patterns",
+        int(ml_conf * 100),
+        "ML model prediction"
+)
     if not candidates:
         add_candidate(
             "Unknown Error",
