@@ -35,16 +35,19 @@ def tracefix(error_message: str):
 @app.command()
 def run(file: str):
     import subprocess
+    import sys
 
     result = subprocess.run(
-        ["python", file],
+        [sys.executable, file],
         capture_output=True,
         text=True
     )
 
-    if result.stderr:
-        print("\nError detected while running file.\n")
-        analysis = analyze_error(result.stderr)
+    error_output = result.stderr.strip() if result.stderr else result.stdout.strip()
+
+    if error_output:
+        print("\n⚠️ Error detected while running file.\n")
+        analysis = analyze_error(error_output)
         display_analysis(analysis)
     else:
         print("No errors found. Program ran successfully.")
