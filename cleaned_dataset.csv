@@ -1,0 +1,10 @@
+errormessage,label,fix
+key not found in dictionary,KeyError,check if key exists
+module not installed,Dependency,install the required module
+invalid attribute access,TypeError,check object type before calling methods
+division by zero,TypeError,ensure denominator is not zero
+invalid syntax,SyntaxError,fix syntax formatting
+file does not exist,Dependency,check file path
+index out of range,IndexError,check list index bounds
+incompatible types,TypeError,convert values to same type
+variable not defined,Dependency,define the variable before use
